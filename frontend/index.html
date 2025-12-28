@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Advanced Traffic Flow Prediction - Multi-Dataset AI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+<div class="main-scroll-container">
+    <!-- Welcome Section -->
+    <section class="section-fullscreen" id="welcome">
+        <span class="welcome-text">Welcome to Advanced Traffic Analytics!</span>
+        <p class="subtitle">Multi-Dataset AI Predictions with Enhanced Visualizations</p>
+    </section>
+    <!-- App Main Title -->
+    <section class="section-fullscreen" id="title-section">
+        <div class="header">
+            <h1>🚦 Advanced Traffic Flow Prediction</h1>
+            <h3>Multi-Dataset Analysis, Real-Time Comparison & Export Features</h3>
+        </div>
+    </section>
+    <!-- Weather Section -->
+    <section class="section-fullscreen" id="weather-section">
+        <div class="weather-section">
+            <h2>Current Weather Impact Analysis</h2>
+            <select id="citySelector">
+                <option value="Bangalore">Bangalore</option>
+                <option value="Mumbai">Mumbai</option>
+                <option value="Delhi">Delhi</option>
+                <option value="Chennai">Chennai</option>
+                <option value="Hyderabad">Hyderabad</option>
+            </select>
+            <div id="weatherInfo" class="weather-display"></div>
+        </div>
+    </section>
+    <!-- Advanced Input Section -->
+    <section class="section-fullscreen" id="input-section">
+        <div class="input-section">
+            <h2>Multi-Junction Traffic Prediction</h2>
+            <!-- Filtering Controls -->
+            <div class="filter-controls">
+                <div class="filter-group">
+                    <label>City Selection:</label>
+                    <select id="citySelection">
+                        <option value="Kalaburagi">Kalaburagi</option>
+                        <option value="Bangalore" selected>Bangalore</option>
+                        <option value="Bidar">Bidar</option>
+                        <option value="Raichur">Raichur</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Junction Filter:</label>
+                    <select id="junctionFilter">
+                        <option value="all">All Junctions</option>
+                        <option value="1">Junction 1 - Main Street</option>
+                        <option value="2">Junction 2 - Highway Cross</option>
+                        <option value="3">Junction 3 - City Center</option>
+                        <option value="4">Junction 4 - Airport Road</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Week Filter:</label>
+                    <select id="weekFilter">
+                        <option value="current">Current Week</option>
+                        <option value="last">Last Week</option>
+                        <option value="next">Next Week</option>
+                        <option value="all">All Weeks</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Data View:</label>
+                    <select id="dataView">
+                        <option value="comparison">Predicted vs Actual</option>
+                        <option value="predicted">Predicted Only</option>
+                        <option value="actual">Actual Only</option>
+                        <option value="multiple">Multiple Junctions</option>
+                    </select>
+                </div>
+            </div>
+            <!-- Prediction Form -->
+            <form id="predictForm">
+                <div class="input-row">
+                    <input type="number" id="hour" placeholder="Hour (0-23)" min="0" max="23" required>
+                    <input type="number" id="weekday" placeholder="Weekday (0-6)" min="0" max="6" required>
+                </div>
+                <div class="input-row">
+                    <input type="number" id="junction" placeholder="Junction ID" min="1" max="4" required>
+                    <input type="number" id="temperature" placeholder="Temperature °C" step="0.1">
+                </div>
+                <button type="submit" class="glow-btn">Predict Multi-Dataset Flow</button>
+            </form>
+        </div>
+    </section>
+    <!-- Advanced Chart Section -->
+    <section class="section-fullscreen" id="output-section">
+        <div class="result-section" id="resultSection"></div>
+        <div class="chart-controls">
+            <button id="toggleLegend" class="control-btn">Toggle Legend</button>
+            <button id="resetZoom" class="control-btn">Reset Zoom</button>
+            <button id="exportPNG" class="control-btn">Export PNG</button>
+            <button id="exportPDF" class="control-btn">Export PDF</button>
+        </div>
+        <div class="chart-container">
+            <canvas id="trafficChart" width="600" height="300"></canvas>
+        </div>
+        <div class="export-section">
+            <button class="glow-btn" id="downloadCSV">Download Data as CSV</button>
+            <button class="glow-btn" id="downloadAnalysis">Download Analysis Report</button>
+        </div>
+    </section>
+    <!-- Statistics Dashboard -->
+    <section class="section-fullscreen" id="stats-section">
+        <div class="stats-dashboard">
+            <h2>Traffic Analytics Dashboard</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>Average Accuracy</h3>
+                    <span id="avgAccuracy">--</span>
+                </div>
+                <div class="stat-card">
+                    <h3>Peak Hours</h3>
+                    <span id="peakHours">--</span>
+                </div>
+                <div class="stat-card">
+                    <h3>Total Predictions</h3>
+                    <span id="totalPredictions">0</span>
+                </div>
+                <div class="stat-card">
+                    <h3>Active Junctions</h3>
+                    <span id="activeJunctions">4</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <section class="section-fullscreen" id="footer-section">
+        <div class="footer-section">
+            <strong>Advanced Traffic Analytics System</strong><br>
+            Developed by <strong>Megha and Team</strong> | Final Year Information Science Engineering<br>
+            PDA College &copy; 2025 | Multi-Dataset AI Implementation<br>
+            <span style="font-size:1.9rem;"></span>
+        </div>
+    </section>
+</div>
+<!-- Required JS libraries -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1/dist/chartjs-plugin-zoom.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1/dist/chartjs-plugin-annotation.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="scripts/weather.js"></script>
+<script src="scripts/advanced-app.js"></script>
+</body>
+</html>
